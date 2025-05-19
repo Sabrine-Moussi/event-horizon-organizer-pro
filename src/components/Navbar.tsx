@@ -1,12 +1,22 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +35,11 @@ const Navbar: React.FC = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
   
   return (
@@ -69,15 +84,48 @@ const Navbar: React.FC = () => {
             <Link to="/contact" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
               Contact
             </Link>
-            <Link to="/admin" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
-              Admin
-            </Link>
+            {isAdmin && (
+              <Link to="/admin" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
+                Admin
+              </Link>
+            )}
           </div>
           
           <div className="hidden md:flex items-center space-x-3">
-            <Button className="event-btn event-btn-primary">
-              Réservez maintenant
-            </Button>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    <span>{user?.name}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <Link to="/profile" className="flex items-center w-full">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Mon profil</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem>
+                      <Link to="/admin" className="flex items-center w-full">
+                        <span>Administration</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-500">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Déconnexion</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button onClick={() => navigate("/auth")} className="event-btn event-btn-primary">
+                Connexion
+              </Button>
+            )}
           </div>
           
           {/* Mobile Navigation Button */}
@@ -152,17 +200,42 @@ const Navbar: React.FC = () => {
             >
               Contact
             </Link>
-            <Link
-              to="/admin"
-              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
-              onClick={toggleMenu}
-            >
-              Admin
-            </Link>
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
+                onClick={toggleMenu}
+              >
+                Admin
+              </Link>
+            )}
             <div className="pt-2">
-              <Button className="w-full event-btn event-btn-primary">
-                Réservez maintenant
-              </Button>
+              {isAuthenticated ? (
+                <div className="space-y-2">
+                  <Link to="/profile" className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue">
+                    <User className="inline-block mr-2 h-4 w-4" />
+                    <span>Mon profil</span>
+                  </Link>
+                  <Button 
+                    onClick={handleLogout} 
+                    variant="destructive" 
+                    className="w-full flex items-center justify-center gap-2"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span>Déconnexion</span>
+                  </Button>
+                </div>
+              ) : (
+                <Button 
+                  onClick={() => {
+                    navigate("/auth");
+                    toggleMenu();
+                  }} 
+                  className="w-full event-btn event-btn-primary"
+                >
+                  Connexion
+                </Button>
+              )}
             </div>
           </div>
         </div>
