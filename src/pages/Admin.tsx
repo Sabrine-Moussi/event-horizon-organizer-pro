@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings, Users, Calendar, MessageSquare, Image, FileText } from "lucide-react";
+import { Settings, Users, Calendar, MessageSquare, Image, FileText, Star } from "lucide-react";
 
 const AdminSidebar = () => {
   return (
