@@ -44,6 +44,9 @@ const Navbar: React.FC = () => {
             <Link to="/" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
               Accueil
             </Link>
+            <Link to="/about" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
+              À propos
+            </Link>
             <div className="relative group">
               <button className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue flex items-center">
                 Événements <ChevronDown className="ml-1 h-4 w-4" />
@@ -60,17 +63,14 @@ const Navbar: React.FC = () => {
                 </Link>
               </div>
             </div>
-            <Link to="/gallery" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
-              Galerie
-            </Link>
             <Link to="/services" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
               Services
             </Link>
-            <Link to="/about" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
-              À propos
-            </Link>
             <Link to="/contact" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
               Contact
+            </Link>
+            <Link to="/admin" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
+              Admin
             </Link>
           </div>
           
@@ -105,6 +105,13 @@ const Navbar: React.FC = () => {
             >
               Accueil
             </Link>
+            <Link
+              to="/about"
+              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
+              onClick={toggleMenu}
+            >
+              À propos
+            </Link>
             <div className="block px-3 py-2 rounded-md text-gray-700">
               Événements
               <div className="pl-4 mt-1 space-y-1">
@@ -132,13 +139,6 @@ const Navbar: React.FC = () => {
               </div>
             </div>
             <Link
-              to="/gallery"
-              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
-              onClick={toggleMenu}
-            >
-              Galerie
-            </Link>
-            <Link
               to="/services"
               className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
               onClick={toggleMenu}
@@ -146,18 +146,18 @@ const Navbar: React.FC = () => {
               Services
             </Link>
             <Link
-              to="/about"
-              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
-              onClick={toggleMenu}
-            >
-              À propos
-            </Link>
-            <Link
               to="/contact"
               className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
               onClick={toggleMenu}
             >
               Contact
+            </Link>
+            <Link
+              to="/admin"
+              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
+              onClick={toggleMenu}
+            >
+              Admin
             </Link>
             <div className="pt-2">
               <Button className="w-full event-btn event-btn-primary">
