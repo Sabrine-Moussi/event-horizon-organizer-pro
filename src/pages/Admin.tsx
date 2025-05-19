@@ -5,7 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings, Users, Calendar, MessageSquare, Image, FileText } from "lucide-react";
+import { Settings, Users, Calendar, MessageSquare, Image, FileText, Star } from "lucide-react";
+import DashboardStats from "@/components/admin/DashboardStats";
+import EventManagement from "@/components/admin/EventManagement";
+import GalleryManagement from "@/components/admin/GalleryManagement";
+import SettingsManagement from "@/components/admin/SettingsManagement";
 
 const AdminSidebar = () => {
   return (
@@ -83,7 +87,7 @@ const Admin = () => {
           <p className="text-gray-600">Gérez votre site et son contenu</p>
         </div>
         
-        <Tabs defaultValue="testimonials">
+        <Tabs defaultValue="dashboard">
           <TabsList className="mb-6">
             <TabsTrigger value="dashboard">Tableau de bord</TabsTrigger>
             <TabsTrigger value="events">Événements</TabsTrigger>
@@ -93,32 +97,11 @@ const Admin = () => {
           </TabsList>
           
           <TabsContent value="dashboard">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Événements à venir</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">12</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Demandes en attente</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">8</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Nouveaux messages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">5</p>
-                </CardContent>
-              </Card>
-            </div>
+            <DashboardStats />
+          </TabsContent>
+          
+          <TabsContent value="events">
+            <EventManagement />
           </TabsContent>
           
           <TabsContent value="testimonials">
@@ -193,40 +176,12 @@ const Admin = () => {
             </div>
           </TabsContent>
           
-          <TabsContent value="events">
-            <Card>
-              <CardHeader>
-                <CardTitle>Gestion des événements</CardTitle>
-                <CardDescription>Ajoutez, modifiez ou supprimez les événements</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-500">Cette section permettra de gérer les événements.</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          
           <TabsContent value="gallery">
-            <Card>
-              <CardHeader>
-                <CardTitle>Gestion de la galerie</CardTitle>
-                <CardDescription>Ajoutez ou supprimez des images de votre galerie</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-500">Cette section permettra de gérer la galerie photos.</p>
-              </CardContent>
-            </Card>
+            <GalleryManagement />
           </TabsContent>
           
           <TabsContent value="settings">
-            <Card>
-              <CardHeader>
-                <CardTitle>Paramètres du site</CardTitle>
-                <CardDescription>Configurez les paramètres généraux du site</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-500">Cette section permettra de gérer les paramètres du site.</p>
-              </CardContent>
-            </Card>
+            <SettingsManagement />
           </TabsContent>
         </Tabs>
       </div>
