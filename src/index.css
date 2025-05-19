@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221 88% 50%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -97,5 +91,46 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  .event-btn {
+    @apply px-6 py-3 font-medium rounded-md transition-all duration-300;
+  }
+  
+  .event-btn-primary {
+    @apply bg-event-blue text-white hover:bg-event-dark-blue;
+  }
+  
+  .event-btn-secondary {
+    @apply bg-white text-event-blue border border-event-blue hover:bg-event-light-blue;
+  }
+  
+  .event-btn-accent {
+    @apply bg-event-pink text-white hover:opacity-90;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-2 text-gray-800;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-gray-600 mb-10;
+  }
+  
+  .event-card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2;
+  }
+  
+  .event-card-image {
+    @apply w-full h-48 object-cover;
+  }
+  
+  .event-card-content {
+    @apply p-5;
+  }
+  
+  .event-testimonial {
+    @apply bg-white p-6 rounded-xl shadow-md;
   }
 }
