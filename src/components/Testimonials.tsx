@@ -1,26 +1,43 @@
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
     quote: "EventPro a transformé notre mariage en un événement magique. Chaque détail était parfait, et nos invités en parlent encore !",
     author: "Sophie & Thomas",
     role: "Mariage à Paris",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200"
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200",
+    rating: 5
   },
   {
     quote: "L'organisation de notre conférence annuelle n'a jamais été aussi fluide. L'équipe d'EventPro est professionnelle et extrêmement compétente.",
     author: "Marc Dupont",
     role: "Directeur Marketing, TechCorp",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200",
+    rating: 4
   },
   {
     quote: "Je remercie toute l'équipe pour avoir rendu mon 40e anniversaire si spécial. Tout était exactement comme je l'avais imaginé.",
     author: "Claire Martin",
     role: "Anniversaire VIP",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200"
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200&h=200",
+    rating: 5
   }
 ];
+
+const RatingStars = ({ rating }: { rating: number }) => {
+  return (
+    <div className="flex gap-1 mb-3">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`w-5 h-5 ${star <= rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+        />
+      ))}
+    </div>
+  );
+};
 
 const Testimonials = () => {
   return (
@@ -55,6 +72,7 @@ const Testimonials = () => {
                         <svg className="w-10 h-10 text-event-light-blue mb-4" fill="currentColor" viewBox="0 0 32 32">
                           <path d="M10 8v6a6 6 0 01-6 6H0v2a8 8 0 008 8h2a10 10 0 0010-10V8H10zm20 0v6a6 6 0 01-6 6h-4v2a8 8 0 008 8h2a10 10 0 0010-10V8H30z"></path>
                         </svg>
+                        <RatingStars rating={testimonial.rating} />
                         <p className="text-lg md:text-xl text-gray-700 mb-6">"{testimonial.quote}"</p>
                         <div>
                           <p className="font-semibold text-gray-900">{testimonial.author}</p>
