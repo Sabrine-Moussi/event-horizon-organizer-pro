@@ -69,9 +69,6 @@ const Navbar: React.FC = () => {
             <Link to="/contact" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
               Contact
             </Link>
-            <Link to="/admin" className="px-3 py-2 rounded-md text-gray-700 hover:text-event-blue">
-              Admin
-            </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-3">
@@ -151,13 +148,6 @@ const Navbar: React.FC = () => {
               onClick={toggleMenu}
             >
               Contact
-            </Link>
-            <Link
-              to="/admin"
-              className="block px-3 py-2 rounded-md text-gray-700 hover:bg-event-light-blue"
-              onClick={toggleMenu}
-            >
-              Admin
             </Link>
             <div className="pt-2">
               <Button className="w-full event-btn event-btn-primary">
